@@ -14,22 +14,7 @@ namespace AdventOfCode2024.DayThree
             Console.WriteLine("Part One :" + CalculatePartOne(list));
             Console.WriteLine("Part Two :" + CalculatePartTwo(data));
         }
-        static MatchCollection FindPatterns(string input)
-        {
-            string pattern = @"mul\(\d{1,3},\d{1,3}\)";
-            var regex = new Regex(pattern);
-            return regex.Matches(input);
-        }
 
-        private static int[] StripChars(string arr)
-        {
-            var pattern = @"\d+";
-            var regex = new Regex(pattern);
-
-            return regex.Matches(arr).
-                Select(x => int.Parse(x.Value))
-                .ToArray();
-        }
         private static int CalculatePartOne(List<string> list)
         {
             var total = 0;
@@ -60,6 +45,23 @@ namespace AdventOfCode2024.DayThree
                 total += list.Sum(x => x.First() * x.Last());
             }
             return total;
+        }
+
+        private static MatchCollection FindPatterns(string input)
+        {
+            string pattern = @"mul\(\d{1,3},\d{1,3}\)";
+            var regex = new Regex(pattern);
+            return regex.Matches(input);
+        }
+
+        private static int[] StripChars(string arr)
+        {
+            var pattern = @"\d+";
+            var regex = new Regex(pattern);
+
+            return regex.Matches(arr).
+                Select(x => int.Parse(x.Value))
+                .ToArray();
         }
     }
 }
