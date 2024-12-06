@@ -1,32 +1,34 @@
-﻿
-namespace AdventOfCode2024.DayTwo
+﻿namespace AdventOfCode2024.DayTwo
 {
     public class Two
     {
-        private static List<int[]> Data = [];
         private static readonly char[] separator = [' '];
 
-        public static void PopulateInput()
+        public static void Calculate()
         {
             var data = File.ReadAllLines(@"./DayTwo/Input/Input.txt");
             var split = data.Select(x => x.Split(separator, StringSplitOptions.RemoveEmptyEntries).ToArray());
-            Data = split.Select(x => Array.ConvertAll(x, int.Parse)).ToList();
+            var listData = split.Select(x => Array.ConvertAll(x, int.Parse)).ToList();
+
+            Console.WriteLine("Part One :" + CalculatePartOne(listData));
+            Console.WriteLine("Part Two :" + CalculatePartTwo(listData));
         }
 
-        public static int CalculatePartOne()
+        private static int CalculatePartOne(List<int[]> data)
         {
             var count = 0;
 
-            foreach (var line in Data)
+            foreach (var line in data)
                 if (ValidateIncrementation(line, false)) count++;
 
             return count;
         }
-        public static int CalculatePartTwo()
+
+        private static int CalculatePartTwo(List<int[]> data)
         {
             var count = 0;
 
-            foreach (var line in Data)
+            foreach (var line in data)
                 if (ValidateIncrementation(line, true)) count++;
 
             return count;

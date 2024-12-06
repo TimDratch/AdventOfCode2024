@@ -1,43 +1,41 @@
-﻿
-namespace AdventOfCode2024.DayOne
+﻿namespace AdventOfCode2024.DayOne
 {
     public class One
     {
-        private static readonly List<int> ListA = [];
-        private static readonly List<int> ListB = [];
-        private static int Count = 0;
-
-         public static void PopulateInput()
+        public static void Calculate()
         {
-            var data = File.ReadAllLines(@"./Dayone/Input/Input.txt");
+            var data = File.ReadAllLines(@"./Dayone/Input/InputTest.txt");
+            var listA = new List<int>();
+            var listB = new List<int>();
+
             foreach (var line in data)
             {
                 var split = line.Split(' ')
                     .Where(x => x is not null)
                     .ToArray();
-                ListA.Add(int.Parse(split.First()));
-                ListB.Add(int.Parse(split.Last()));
+                listA.Add(int.Parse(split.First()));
+                listB.Add(int.Parse(split.Last()));
             }
-            Count = ListA.Count;
+            Console.WriteLine("Part One :" + CalculatePartOne(listA, listB));
+            Console.WriteLine("Part Two :" + CalculatePartTwo(listA, listB));
         }
 
-        public static int CalculatePartOne()
+        private static int CalculatePartOne(List<int> listA, List<int> listB)
         {
             var sum = 0;
 
-            var orderedA = ListA.OrderBy(x => x).ToArray();
-            var orderedB = ListB.OrderBy(x => x).ToArray();
-            for (var i = 0; i < Count; i++)
-            {
+            var orderedA = listA.OrderBy(x => x).ToArray();
+            var orderedB = listB.OrderBy(x => x).ToArray();
+
+            for (var i = 0; i < listA.Count; i++)
                 sum += GetDifference(orderedA[i], orderedB[i]);
-            }
 
             return sum;
         }
 
-        public static int CalculatePartTwo()
+        private static int CalculatePartTwo(List<int> listA, List<int> listB)
         {
-            return ListA.Sum(x => x * ListB.Where(y => y == x).Count());
+            return listA.Sum(x => x * listB.Where(y => y == x).Count());
         }
 
         private static int GetDifference(int a, int b)

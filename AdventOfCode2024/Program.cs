@@ -1,5 +1,6 @@
 ﻿using AdventOfCode2024.DayOne;
 using AdventOfCode2024.DayTwo;
+using AdventOfCode2024.DayThree;
 
 namespace AdventOfCode2024
 {
@@ -7,14 +8,12 @@ namespace AdventOfCode2024
     {
         public static void Main()
         {
-            One.PopulateInput();
             Console.WriteLine("Day One");
-            Console.WriteLine("Part One: " + One.CalculatePartOne());
-            Console.WriteLine("Part Two: " + One.CalculatePartTwo());
-            Two.PopulateInput();
+            One.Calculate();
             Console.WriteLine("Day Two");
-            Console.WriteLine("Part One: " + Two.CalculatePartOne());
-            Console.WriteLine("Part Two: " + Two.CalculatePartTwo());
+            Two.Calculate();
+            Console.WriteLine("Day Three");
+            Three.Calculate();
         }
     }
 }
